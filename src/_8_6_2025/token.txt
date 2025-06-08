@@ -1,0 +1,207 @@
+In java tokens are small elements which are understand by compile only.
+
+token are -->   1. Keywords
+				2. identifiers
+				3. liters
+				4. concatenation
+				5. comments
+				6. data types
+				7. variable
+				8. operators ...........
+				
+1. keywords : 
+-------------------------------
+1. keywords are predefined words which are used only used specific perpose.
+2. keywords also called reserved words.
+3. in java keywords above 50+
+4. all keywords are in lower case.
+
+note : true, false, null are not keywords these are values
+
+example : 
+
+	int is keywords. it is used only for declare int data types variable.
+	
+	
+	
+2. Identifiers :
+=====================================================================================
+
+1. identifiers are nothing but giving names for java components.
+						or
+	identifiers are used create names only
+	
+basic rules : 
+------------
+
+1. it shouldn't start with digits
+	23vara(incorrect) --> vara23(correct)
+	
+2. it shouldn't contain spaces
+	vara lakshmi(incorrect) --> vara_lakshmi(correct)
+	
+3. it shouldn't contain special characters except unerscore and doller symbol
+	vara@# (incorrect) --> _vara or $vara (correct)
+	
+4. we shouldn't contain keywords	
+	int(incorrect) --> Int(correct)
+	
+IT rules :(optional)
+--------------------
+
+1. camel case : staring word 1st letter small after next all words starting letter should capital
+		
+		used for : variable, methods
+		
+		example : varaLakshmi
+		
+2. pascal case : every word 1st letter should capital
+
+		used for : class names, interface name
+
+		example : HelloWorld 
+
+
+===================================================================================
+
+3. Liters : liters nothing but data or values
+
+	liters are in java divided into 4 types
+		
+			1. Numbers ( 0-9)
+			2. Characters ( which enclosed with single quotes only one character)
+				example : 'x','$','@','-',......
+				
+			3. Strings ( which enclosed with double quotes)
+				example : "x", "vara", "hello",..........
+				
+			4. Boolean ( true or false)
+			
+			
+========================================================================================
+
+4. concatenation : concatenation is nothing combing or merging two or more liters.
+
+	ASCILL VALUES : 
+	
+		'a' -> 97
+		'A' -> 65 AND 'Z' -> 90
+		'0' -> 48 ....
+		
+	1. numbers + number     ->(addition) 3 + 4 = 7
+	
+	   numbers + characters  ->(addition) 6 + 'a' = 6 + 97 = 103
+	  
+	   numbers + String		->(concatenation) 40 + "vara" => "40vara"
+	  
+	   numbers + boolean		->(compile time error)-> incompatuble error
+	  
+	
+  2.  characters + number     ->(addition) '0' + 4 => 48 + 4 = 52
+	
+	  characters + characters  ->(addition) 'a' + 'a' = 97 + 97 = 194
+	  
+	  characters + String		->(concatenation) 'a' + "vara" => "avara"
+	  
+	  characters + boolean		->(compile time error)-> incompatuble error
+	  
+	  
+  3.  String + number       ->(concatenation) 3 + "vara" -> "3vara"
+	
+	  String + characters   ->(concatenation) 'a' + "vara" => "avara"
+	  
+	  String + String		->(concatenation) "varidi" + "vara" => "varidivara"
+	  
+	  String + boolean		-> (concatenation) "vara" + false => "varafalse"
+	  
+  
+  4.  boolean + number       ->(compile time error)-> incompatuble error
+	
+	  boolean + characters   ->(compile time error)-> incompatuble error
+	  
+	  boolean + String		->(compile time error)-> incompatuble error
+	  
+	  boolean + boolean		->(compile time error)-> incompatuble error
+	
+
+======================================================================================
+
+5. comments : comments are used we can represent the functionalities of block code
+	if languages are comments supports that languages are high level languages
+	
+	1. single line comments
+			example -> // this is my code
+			
+	2. multiline comments
+		example -> /* this is addtion code */
+		
+=========================================================
+
+6. datatypes in java -> data types are used we can specify the which type data we are going 
+						to store in perticular variable.
+						
+	-> mainly data types are divided in two types
+	
+	1. primitive data types (performance high)
+	2. non primitive data types ( we can achieve object oriented )
+
+   1. primitive data types are : 
+   
+   -> all primitive data types are keywords
+   -> primitive data types are predefined data types
+   -> all primitive data have fixed memory
+   
+   		// these are used store only integers values			
+  		1. byte(1 byte)
+  		2. short (2 bytes)
+  		3. int	( 4 bytes)
+  		4. long (8 bytes)
+  		
+  		// these are used store only decimal numbers
+  		5. float (4 bytes)
+  		6. double ( 8 bytes)
+  		
+  		7. char (2 bytes)
+  		8. boolean ( 1 bit) -> one bit is used to store either 0 or 1.
+  		
+   2. non-primitive data types are : 
+   
+   -> all non-primitive data types user defined data types.
+   -> all classes are non-primitive data types
+   example : String ....
+   
+   		
+========================================================================
+
+7. variable : variables are used give name for block of memory 
+
+	identifiers are used to create names -> vara, vara20 ....
+	
+	// datatype variableName = value ;
+	
+	variables are used to give name for block of memory => int vara = 20;
+
+-> variables are divided into two types based declaration:
+
+
+	
+	1. based on datatypes--> 1. primitive datatype variables
+							 2. non-primtive datatypes variables
+	
+	2. based on scope  --> 1. static variable
+				  2. non-static variable
+				  3. local variable
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,141 @@
+
+
+
+types of languages :
+	
+	1. low level language or binary  language :
+		
+		we are writting instruction or statements using 0's and 1's .
+		
+
+		--> it is easy to understatnd for system or computer
+		--> it is hard to understatnd for developer or programmer
+		
+		example : 100101111 10001111 10100101010 
+		
+		
+	2. middle level language or intermediate level language :
+		
+		we are writting instruction or statements using mnemorics.
+		
+		mnemorics are nothing small words like add, sub, etc..
+		
+		--> it is diffult to understatnd for system or computer
+		--> it is little bit easy to understatnd for developer or programmer
+		
+		assymbly language it is example for middle level language
+		
+		
+		
+		int a = 4 ;
+	    int b = 5;
+	    int add = a + b ; // high level language
+	    
+	    add a , b; // middle level language 
+	    move a;
+	    	
+		3. high level language
+			
+			we are writting instruction or statements using english and symbols.
+			
+			
+			--> it is diffult to understatnd for system or computer
+			--> it is easy to understatnd for developer or programmer 
+		
+					int a = 4 ;
+				    int b = 5;
+				    int add = a + b ; // high level language
+			
+			------------------------------------------------------
+			
+			
+			
+translator :
+	
+	it is used to convert one language to anther language
+	
+	1. compiler : 
+		
+		it takes total program instructions after it will  converted to 
+		another language at once
+		
+		it is faster compare to interpreter
+		
+		c, c++ is used
+		
+		it will perform one short exection
+	
+	2. interpreter
+	
+		it is perform line by line  execution
+		
+		it is slow
+		
+		it is used in javascript , python ...
+		
+		
+translator in java :
+	
+	in java we have two translators
+	
+	1. compiler and interpreter
+	
+	1. java code --> javac Filename.java // compile
+	
+						^
+						|
+						
+					byte code or ClassName.class --> this not low level and high level 
+					
+					jvm only understand byte code
+						
+	2. exection --> java ClassName // interpreter
+	
+	internal flow of java file
+	------------------------------------------
+	
+	1. java code 
+	
+	2. javac file.java --> compiler load the program and it will check syntax error
+					   --> it there is no error it will create byte code file 
+					   --> it will save name with class name.
+	
+	3. java ClassName  --> in exection jvm search for ClassName file 
+					   --> if file not found it will shows ClassNotFoundException 
+					   --> if it is found it will execute the byte code by using interpreter
+	
+					   
+				sava java code name as Lakshmi.java
+	
+					   public class vara {
+							public static void main(String[] args) {
+								
+								System.out.println("hi "); // statements or instructions
+							
+							}
+						}
+	
+	
+	terminalogies of java (or) key components of java
+	------------------------------
+	
+									1. javac
+								/
+	jdk(java development kit) --
+								\
+									2. JRE(java runtime environment) --> 1. jvm 
+																	 --> garbage collector
+																	  > execution engine
+																	  > class loader
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
