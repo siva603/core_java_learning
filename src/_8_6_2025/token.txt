@@ -185,23 +185,260 @@ IT rules :(optional)
 
 
 	
-	1. based on datatypes--> 1. primitive datatype variables
-							 2. non-primtive datatypes variables
+	1. based on datatypes--> 
 	
-	2. based on scope  --> 1. static variable
-				  2. non-static variable
-				  3. local variable
+			1. primitive datatype variables
+				syntax : primitive_datatype varialbleName = values;
+								
+			2. non-primtive datatypes variables
+				syntax : non_primitive_datatype varialbleName = values;
+	
+	2. based on scope  --> 
+			1. static variable (inside class and outside block)
+				syntax : syntax : static datatype varialbleName = values;
+				
+			2. non-static variable(inside class and outside block)
+			   syntax : datatype varialbleName = values;
+			   
+			3. local variable(inside block)
+			   syntax : datatype varialbleName = values;
+
+==============================================================================
 
 
+OPERATORS IN JAVA : 
+------------------
+operators( +, -, /, *, % ...)
+operands ( variables)
 
+Operators are nothing special symbols which are used perform operations on operands
 
+every operators have 2 functionalities.
 
+	1. every operator returns result
+	2. every operator have their own precedence(priority)
+	
+operators are divided into 2 types based on declaration
+---------------------------------------------------
 
+1. based on operands : based on operands operators are divided into three types
+--------------------
+	
+	1. unary operator : a operator which is accept only one operand is called unary operator.
+		example --> +variableName, -variableName, ++variableName, --variableName
+		
+	2. binary operator : a operator which is accept only two operands is called binary operator.
+		example --> variableName + variableName
+		
+	3. ternary operator : a operator which is accept only three or more operands is called ternary operator.
+		example --> condition ? true : false ;
+		
+		
+2. based on operators : based on operators, operators are divided into 7 types.
+---------------------
 
+	1. Arithmetic operator : 
+		-> this is used we can perform arithmetic operations on operands.
+	
+			int a = 10, b= 20;
+			System.out.println(a + b);
+			System.out.println(a - b);
+			System.out.println(a * b);
+			System.out.println(a / b);
+			System.out.println(a % b);
+	
+	
+	2. Assignment operator : 
+	
+		-> this operator is used we can assign value to a variable.
+		this is divided into 2 types.
+		
+		1. single assignment operator : directly value assign to variable
+		
+					int b = 10;
+					
+		2. compound assignment operator : here 1st we perform arithmetic operation 
+		after the result is assign to variable.( +=, -=, *=, /=, %= )
+					int c = 10;
+					 c = c + 20  or c += 20(compound assignment operator)
+		
+	3. Relational operator :( <, >, <=, >=, ==, != )
+	
+		this operator is used check relation on between two operators or we can build conditions.
+						int a = 20, b=20;
+						System.out.println(a > b);
+			
+			
+	4. Logical operator    :( &&, ||, !)
+		this operators are used we can multiple conditions
+		
+						 int a = 20, b=40;
+						System.out.println(a < b && b > a);
+		
+	5. Ternary operator	   :
+		this is used we can execute single statement based on condition
+		
+			int a = 20, b=20;
+			int res = a < b ? a : b ;
+			System.out.println(res);
+			
+	6. increment/decrement operator :
+	
+		this is used we can increase or decrease by one value
+		
+		1. post increment(a++): 1st value will be executed after incremented 
+		2. pre increment(++a) : 1st value will be incremented after executed
+		
+		3. post decrement(a--): 1st value will be executed after decremented 
+		4. pre decrement(--a) : 1st value will be decremented after executed
+		
+		 
+	7. bitwise operator    :
 
+		this operator is used we can perform bit manipulation.
+		
+		1. bitwise and operator
+		------------------------------------------------------
+		
+					1 & 1 -> 1	 (AND TABLE)
+					1 & 0 -> 0	
+					0 & 1 -> 0	
+					0 & 0 -> 0
+					
+					
+				64	32	16 	8	4	2	1
+				--------------------------
+			int a = 5 ; 	0	1	0	1
+			int b = 3 ; 	0	0	1	1
+						-------------------
+							0	0	0	1 ( value is 1 )
+							
+							
+		
+		2. bitwise or operator : 
+		-------------------------------------------------
+		
+		
+					1 | 1 -> 1	 (OR TABLE)
+					1 | 0 -> 1	
+					0 | 1 -> 1	
+					0 | 0 -> 0
+					
+					
+				64	32	16 	8	4	2	1
+				--------------------------
+			int a = 5 ; 	0	1	0	1
+			int b = 3 ; 	0	0	1	1
+						-------------------
+							0	1	1	1 ( value is 7 )
+		
+		3. bitwise xor operator
+		-------------------------------------------------
+		
+		
+					1 ^ 1 -> 0	 (XOR TABLE)
+					1 ^ 0 -> 1	
+					0 ^ 1 -> 1	
+					0 ^ 0 -> 0
+					
+					
+				64	32	16 	8	4	2	1
+				--------------------------
+			int a = 5 ; 	0	1	0	1
+			int b = 3 ; 	0	0	1	1
+						-------------------
+							0	1	1	0 ( value is 6 )
+		
+		4. bitwise left shift operator
+		-------------------------------------------------
+		
+		--> for every left shift operator we should mutlify the value by 2
+		
+		int a = 3 ;
+		
+				64	32	16 	8	4	2	1
+				--------------------------
+			 				0	0	1	1
+			
+			
+		a = a << 1	
+				
+				64	32	16 	8	4	2	1
+				--------------------------
+						0	0	1	1	0 ( after one left shift value (6))
+						
+		a = a<< 2 
+				
+				64	32	16 	8	4	2	1
+				--------------------------
+					0	0	1	1	0	0 ( after second left shift value (12))	
+					
+					
+				64	32	16 	8	4	2	1
+				--------------------------
+				0	0	1	1	0	0	0 ( after third left shift value (24))	
+						
+						
+			in simple way :
+			-----------------
+			
+			if b = 4;
+			
+			b = b<<2 ; ( 4 * 2 = 8 
+						8 * 2 = 16)
+						
+			final answer is 16.
+			
+				
+		5. bitwise right shift operator
+		-------------------------------------------------
+		
+		--> for every left shift operator we should divide the value by 2
+		
+		int a = 3 ;
+		
+				64	32	16 	8	4	2	1
+				--------------------------
+			 				0	0	1	1
+			
+			
+		a = a >> 1	
+				
+				64	32	16 	8	4	2	1
+				--------------------------
+						0	0	0	1	1 ( after one left shift value (3))
+						
+		a = a>> 2 
+				
+				64	32	16 	8	4	2	1
+				--------------------------
+					0	0	0	0	0	1 ( after second left shift value (1))	
+					
+					
+				64	32	16 	8	4	2	1
+				--------------------------
+				0	0	0	0	0	0	0 ( after third left shift value (0))	
+						
+						
+			in simple way :
+			-----------------
+			
+			if b = 16;
+			
+			b = b>>2 ; ( 16 / 2 = 8 
+						8 / 2 = 4)
+						
+			final answer is 4.
+			
 
+		6. bitwise complement operator(~) : 
+		------------------------------------
+		
+		bitwise operator is working based on formula that is -(n+1)
 
-
-
-
+			int b = 10;
+			int res = ~b 
+			internally --> -(10+1) ----> -11
+			
+			System.out.println(res) // -11
 
