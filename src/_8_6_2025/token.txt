@@ -195,12 +195,12 @@ IT rules :(optional)
 	
 	2. based on scope  --> 
 			1. static variable (inside class and outside block)
-				syntax : syntax : static datatype varialbleName = values;
+				syntax :  static datatype varialbleName = values;
 				
 			2. non-static variable(inside class and outside block)
 			   syntax : datatype varialbleName = values;
 			   
-			3. local variable(inside block)
+			3. local variable(inside class & inside block)
 			   syntax : datatype varialbleName = values;
 
 ==============================================================================
@@ -211,7 +211,7 @@ OPERATORS IN JAVA :
 operators( +, -, /, *, % ...)
 operands ( variables)
 
-Operators are nothing special symbols which are used perform operations on operands
+Operators are nothing but special symbols which are used perform operations on operands
 
 every operators have 2 functionalities.
 
@@ -230,7 +230,7 @@ operators are divided into 2 types based on declaration
 	2. binary operator : a operator which is accept only two operands is called binary operator.
 		example --> variableName + variableName
 		
-	3. ternary operator : a operator which is accept only three or more operands is called ternary operator.
+	3. ternary operator : a operator which is accept  three or more operands is called ternary operator.
 		example --> condition ? true : false ;
 		
 		
@@ -238,6 +238,7 @@ operators are divided into 2 types based on declaration
 ---------------------
 
 	1. Arithmetic operator : 
+	
 		-> this is used we can perform arithmetic operations on operands.
 	
 			int a = 10, b= 20;
@@ -264,13 +265,13 @@ operators are divided into 2 types based on declaration
 		
 	3. Relational operator :( <, >, <=, >=, ==, != )
 	
-		this operator is used check relation on between two operators or we can build conditions.
+		this operator is used check relation on between two operands or we can build conditions.
 						int a = 20, b=20;
 						System.out.println(a > b);
 			
 			
 	4. Logical operator    :( &&, ||, !)
-		this operators are used we can multiple conditions
+		this operators are used we can create multiple conditions
 		
 						 int a = 20, b=40;
 						System.out.println(a < b && b > a);
@@ -284,7 +285,7 @@ operators are divided into 2 types based on declaration
 			
 	6. increment/decrement operator :
 	
-		this is used we can increase or decrease by one value
+		this is used to we can increase or decrease by one value
 		
 		1. post increment(a++): 1st value will be executed after incremented 
 		2. pre increment(++a) : 1st value will be incremented after executed
@@ -297,7 +298,7 @@ operators are divided into 2 types based on declaration
 
 		this operator is used we can perform bit manipulation.
 		
-		1. bitwise and operator
+		1. bitwise and operator( & )
 		------------------------------------------------------
 		
 					1 & 1 -> 1	 (AND TABLE)
@@ -315,7 +316,7 @@ operators are divided into 2 types based on declaration
 							
 							
 		
-		2. bitwise or operator : 
+		2. bitwise or operator( | ) : 
 		-------------------------------------------------
 		
 		
@@ -332,7 +333,7 @@ operators are divided into 2 types based on declaration
 						-------------------
 							0	1	1	1 ( value is 7 )
 		
-		3. bitwise xor operator
+		3. bitwise xor operator( ^ )
 		-------------------------------------------------
 		
 		
