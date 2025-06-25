@@ -1,0 +1,123 @@
+Control flow statements
+----------------------------------
+control flow statements are used to control the flow of execution
+
+types of control flow statements
+-----------------------------
+
+1. conditional statements
+-------------------------
+
+based on condition we control the flow of execution
+
+--> based on conditions if we want execute statements then use if else 
+
+--> based on value if we want execute statements then use switch statements
+
+	1. simple if condition( it is used  when we have only one conditions)
+	
+			if(condition){ // relational operators
+			
+				// block of code will execute if condition becomes true
+			}
+			
+	2. if - else condition(it is used  when we have only two conditions only)
+
+			if(condition){
+				// block of code
+			}
+			else{
+				// block of code
+				it will execute if conditions becomes false
+			}
+			
+	3. if - else if - else
+		condition(it is used when we have  more than two conditions )
+
+			if(condition){
+				// block of code
+			}
+			else if(condition){
+				// block of code
+			}
+			else if(condition){
+				// block of code
+			}
+			else{
+				// block of code
+				it will execute when all conditions become false
+			}
+
+	4. switch : 
+	
+	switch is used when we have to execute block of code based on values.
+	
+	syntax :
+	
+		switch(val){
+		
+			case val1 : {
+				block of code
+				break;
+			}
+			
+			case val2 : {
+				block of code
+				break;
+			}
+			
+			.....
+			
+			default : {
+			// when all cases fails it will execute
+			}
+			
+		}
+	
+========================================================================
+
+2. loops statements	-> this loops statements are when we want to execute multiple times
+=--------------------------
+
+		1. while -> this is used when we want execute block of code mulitple times
+		
+			it will check 1st condition after execute. execution continue until
+			condition become false.
+			
+			while(condition){
+			
+				// block of code;
+				
+				-> increament / decreament;
+			}
+		
+		2. do-while -> this is used when we want execute block of code multiple 
+		times. 
+		1st it will execute block of code one time after it will check 
+		condition if condition is true execution will continue other wise stop
+		
+			do{
+			
+				block of code;
+				
+			} while(condition);
+			
+			
+
+		3. for -> this is used when we want execute block of code multiple times
+		and we can write all conditions in single line
+		
+		1st -> initialization will execute only one time
+		2nd -> condition will check true or false
+		3rd -> block of code will execute if condition is true
+		4th -> increment or decrement will execute
+		
+		for(initialization ; condition ; increment/decrement){
+		
+			block of code
+			
+		}
+	
+	
+	
+	
