@@ -2,7 +2,6 @@ package _24_6_2028;
 
 public class _5_methods {
 	
-	
 	static int add(int a,int b) {
 		return a+b;
 	}
