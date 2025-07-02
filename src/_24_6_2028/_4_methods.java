@@ -29,7 +29,7 @@ public class _4_methods {
 	}
 	
 	// with return type and with parameters
-	static int add4(int a , int b) { // parameters
+	static int add4(int a, int b) { // parameters
 		// addition
 		int res = a + b;
 		return res;
@@ -37,10 +37,9 @@ public class _4_methods {
 	
 	public static void main(String[] args) {
 		System.out.println("start");
-		
 		add();
 		
-		int res1 = add1();
+		int res1 = add1();// calling statement
 		System.out.println(res1);
 		
 		add3(10,40);
