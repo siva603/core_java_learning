@@ -11,7 +11,5 @@ public class _1_Simple_If {
 		Scanner scanner = new Scanner(System.in);
 		
 		
-		
-		
 	}
 }
