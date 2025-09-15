@@ -1,0 +1,843 @@
+Set Interface :
+-------------
+
+  It is a pre defined interface of Collection interface 
+  It is present inside the Java.util package 
+  It is growable in nature 
+  It will store both homogeneous and heterogeneous objects 
+  
+  It doesn't allow duplicate objects 
+  It doesn't  provide index 
+  It doesn't provide insertion order 
+  
+  Implementation classes of set interfaces are 
+  	1. HashSet
+  	2. LinkedHashSet
+  	3. TreeSet
+  
+
+HashSet 
+-------
+
+  It is a predefined implementation class of Set interface 
+  It is present inside the Java.util package 
+  It is growable in nature 
+  It will store both homogeneous and heterogeneous objects 
+  
+  It doesn't allow duplicate objects 
+  It doesn't  provide index 
+  It doesn't provide insertion order(not guarenty)
+  
+  Inside HashSet all objects will be stored based on hash code of object 
+  All methods of Set interface will be inherited and implemented in the HashSet class 
+  The underlying data structure is hash table.
+  Inside HashSet we can store null values only once
+
+### **Constructors (HashSet):
+-----------------------------
+
+
+1. `HashSet()` – Creates an empty set.
+2. `HashSet(int initialCapacity)` – Creates a set with given initial capacity.
+3. `HashSet(int initialCapacity, float loadFactor)` – Creates set with capacity & load factor.
+4. `HashSet(Collection c)` – Creates a set containing elements from the given collection.
+
+---
+
+### **Set Methods (from Collection Interface / used in HashSet)**
+---------------------------------------------------------------
+
+* `add(E e)` – Adds element to the set (ignores duplicates).
+* `addAll(Collection c)` – Adds all elements from another collection.
+* `remove(Object o)` – Removes element if present.
+* `removeAll(Collection c)` – Removes all elements present in another collection.
+* `retainAll(Collection c)` – Keeps only elements also in another collection.
+* `clear()` – Removes all elements.
+* `contains(Object o)` – Checks if element exists.
+* `containsAll(Collection c)` – Checks if all elements exist in the set.
+* `isEmpty()` – Checks if the set is empty.
+* `size()` – Returns the number of elements.
+* `iterator()` – Returns an iterator for traversal.
+* `forEach(Consumer action)` – Performs action on each element.
+* `toArray()` – Converts set to Object array.
+* `toArray(T[] a)` – Converts set to typed array.
+* `equals(Object o)` – Compares sets for equality.
+* `hashCode()` – Returns hash value of the set.
+* `spliterator()` – Returns a Spliterator for the set.
+
+
+import java.util.*;
+
+public class EasyHashSetDemo {
+
+    // ----------------- ADD METHODS -----------------
+
+    static void addExample() {
+        HashSet<String> set = new HashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.add("Apple"); // duplicate ignored
+        System.out.println("add(): " + set); 
+        // Output: [Apple, Banana] (order not guaranteed)
+    }
+
+    static void addAllExample() {
+        HashSet<String> set1 = new HashSet<>();
+        set1.add("Apple");
+        HashSet<String> set2 = new HashSet<>();
+        set2.add("Banana");
+        set2.add("Orange");
+        set1.addAll(set2);
+        System.out.println("addAll(): " + set1); 
+        // Output: [Apple, Banana, Orange]
+    }
+
+    // ----------------- REMOVE METHODS -----------------
+
+    static void removeExample() {
+        HashSet<String> set = new HashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.remove("Apple");
+        System.out.println("remove(Object): " + set); 
+        // Output: [Banana]
+    }
+
+    static void removeAllExample() {
+        HashSet<String> set1 = new HashSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        HashSet<String> set2 = new HashSet<>();
+        set2.add("Banana");
+        set1.removeAll(set2);
+        System.out.println("removeAll(): " + set1); 
+        // Output: [Apple]
+    }
+
+    static void retainAllExample() {
+        HashSet<String> set1 = new HashSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        HashSet<String> set2 = new HashSet<>();
+        set2.add("Banana");
+        set1.retainAll(set2);
+        System.out.println("retainAll(): " + set1); 
+        // Output: [Banana]
+    }
+
+    static void clearExample() {
+        HashSet<String> set = new HashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.clear();
+        System.out.println("clear(): " + set); 
+        // Output: []
+    }
+
+    // ----------------- SEARCH METHODS -----------------
+
+    static void containsExample() {
+        HashSet<String> set = new HashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.println("contains(Banana): " + set.contains("Banana")); 
+        // Output: true
+    }
+
+    static void containsAllExample() {
+        HashSet<String> set1 = new HashSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        HashSet<String> set2 = new HashSet<>();
+        set2.add("Banana");
+        System.out.println("containsAll(): " + set1.containsAll(set2)); 
+        // Output: true
+    }
+
+    // ----------------- ACCESS METHODS -----------------
+
+    static void iteratorExample() {
+        HashSet<String> set = new HashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        Iterator<String> it = set.iterator();
+        System.out.print("iterator(): ");
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        System.out.println(); 
+        // Output: Apple Banana (order not guaranteed)
+    }
+
+    static void forEachExample() {
+        HashSet<String> set = new HashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.print("forEach(): ");
+        set.forEach(e -> System.out.print(e + " "));
+        System.out.println(); 
+        // Output: Apple Banana (order not guaranteed)
+    }
+
+    static void toArrayExample() {
+        HashSet<String> set = new HashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        Object[] arr = set.toArray();
+        System.out.println("toArray(): " + Arrays.toString(arr)); 
+        // Output: [Apple, Banana]
+    }
+
+    // ----------------- MISCELLANEOUS -----------------
+
+    static void equalsHashCodeExample() {
+        HashSet<String> set1 = new HashSet<>();
+        set1.add("Apple");
+        HashSet<String> set2 = new HashSet<>();
+        set2.add("Apple");
+        System.out.println("equals(): " + set1.equals(set2)); 
+        // Output: true
+        System.out.println("hashCode(): " + set1.hashCode()); 
+        // Example Output: 63499 (varies)
+    }
+
+    static void sizeIsEmptyExample() {
+        HashSet<String> set = new HashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.println("size(): " + set.size()); 
+        // Output: 2
+        System.out.println("isEmpty(): " + set.isEmpty()); 
+        // Output: false
+    }
+
+    // ----------------- MAIN -----------------
+
+    public static void main(String[] args) {
+        addExample();
+        addAllExample();
+
+        removeExample();
+        removeAllExample();
+        retainAllExample();
+        clearExample();
+
+        containsExample();
+        containsAllExample();
+
+        iteratorExample();
+        forEachExample();
+        toArrayExample();
+
+        equalsHashCodeExample();
+        sizeIsEmptyExample();
+    }
+}
+
+
+
+==========================================================================================
+
+LinkedHashSet :
+---------------
+
+  It is a predefined implementation class of Set interface 
+  It is present inside the Java.util package 
+  It is growable in nature 
+  It will store both homogeneous and heterogeneous objects 
+
+  It doesn't allow duplicate objects 
+  It doesn't  provide index
+  
+  The underlying data structure of LinkedHashSet is HashTable + DoubleLinked
+  It will store objects in insertion order.
+  Inside TreeSet all the elements will be stored in sorting order by defalut accesnding order.
+  Inside TreeSet all the elements should be stored of Comparable or Comparator Type, otherwise
+  we'll get ClassCastException.
+
+
+### **Constructors (LinkedHashSet):**
+--------------------------------------
+
+1. `LinkedHashSet()` – Creates an empty linked hash set.
+2. `LinkedHashSet(int initialCapacity)` – Creates set with given initial capacity.
+3. `LinkedHashSet(int initialCapacity, float loadFactor)` – Creates set with capacity & load factor.
+4. `LinkedHashSet(Collection c)` – Creates set containing elements of given collection.
+
+
+
+### **Set Methods (from Collection Interface / used in LinkedHashSet)**
+------------------------------------------------------------------------
+
+* `add(E e)` – Adds element (ignores duplicates).
+* `addAll(Collection c)` – Adds all elements from another collection.
+* `remove(Object o)` – Removes element if present.
+* `removeAll(Collection c)` – Removes all elements present in another collection.
+* `retainAll(Collection c)` – Keeps only elements also in another collection.
+* `clear()` – Removes all elements.
+* `contains(Object o)` – Checks if element exists.
+* `containsAll(Collection c)` – Checks if all elements exist in the set.
+* `isEmpty()` – Checks if set is empty.
+* `size()` – Returns the number of elements.
+* `iterator()` – Returns an iterator for traversal.
+* `forEach(Consumer action)` – Performs action on each element.
+* `toArray()` – Converts set to Object array.
+* `toArray(T[] a)` – Converts set to typed array.
+* `equals(Object o)` – Compares sets for equality.
+* `hashCode()` – Returns hash value of the set.
+* `spliterator()` – Returns a Spliterator for the set.
+
+> ✅ **Note:** LinkedHashSet preserves **insertion order**, so iteration will be predictable unlike HashSet.
+
+
+
+
+
+
+import java.util.*;
+
+public class EasyLinkedHashSetDemo {
+
+    // ----------------- ADD METHODS -----------------
+
+    static void addExample() {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.add("Apple"); // duplicate ignored
+        System.out.println("add(): " + set); 
+        // Output: [Apple, Banana]
+    }
+
+    static void addAllExample() {
+        LinkedHashSet<String> set1 = new LinkedHashSet<>();
+        set1.add("Apple");
+        LinkedHashSet<String> set2 = new LinkedHashSet<>();
+        set2.add("Banana");
+        set2.add("Orange");
+        set1.addAll(set2);
+        System.out.println("addAll(): " + set1); 
+        // Output: [Apple, Banana, Orange]
+    }
+
+    // ----------------- REMOVE METHODS -----------------
+
+    static void removeExample() {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.remove("Apple");
+        System.out.println("remove(Object): " + set); 
+        // Output: [Banana]
+    }
+
+    static void removeAllExample() {
+        LinkedHashSet<String> set1 = new LinkedHashSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        LinkedHashSet<String> set2 = new LinkedHashSet<>();
+        set2.add("Banana");
+        set1.removeAll(set2);
+        System.out.println("removeAll(): " + set1); 
+        // Output: [Apple]
+    }
+
+    static void retainAllExample() {
+        LinkedHashSet<String> set1 = new LinkedHashSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        LinkedHashSet<String> set2 = new LinkedHashSet<>();
+        set2.add("Banana");
+        set1.retainAll(set2);
+        System.out.println("retainAll(): " + set1); 
+        // Output: [Banana]
+    }
+
+    static void clearExample() {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.clear();
+        System.out.println("clear(): " + set); 
+        // Output: []
+    }
+
+    // ----------------- SEARCH METHODS -----------------
+
+    static void containsExample() {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.println("contains(Banana): " + set.contains("Banana")); 
+        // Output: true
+    }
+
+    static void containsAllExample() {
+        LinkedHashSet<String> set1 = new LinkedHashSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        LinkedHashSet<String> set2 = new LinkedHashSet<>();
+        set2.add("Banana");
+        System.out.println("containsAll(): " + set1.containsAll(set2)); 
+        // Output: true
+    }
+
+    // ----------------- ACCESS METHODS -----------------
+
+    static void iteratorExample() {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.add("Orange");
+        Iterator<String> it = set.iterator();
+        System.out.print("iterator(): ");
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        System.out.println(); 
+        // Output: Apple Banana Orange (insertion order preserved)
+    }
+
+    static void forEachExample() {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.print("forEach(): ");
+        set.forEach(e -> System.out.print(e + " "));
+        System.out.println(); 
+        // Output: Apple Banana Orange
+    }
+
+    static void toArrayExample() {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        Object[] arr = set.toArray();
+        System.out.println("toArray(): " + Arrays.toString(arr)); 
+        // Output: [Apple, Banana]
+    }
+
+    // ----------------- MISCELLANEOUS -----------------
+
+    static void equalsHashCodeExample() {
+        LinkedHashSet<String> set1 = new LinkedHashSet<>();
+        set1.add("Apple");
+        LinkedHashSet<String> set2 = new LinkedHashSet<>();
+        set2.add("Apple");
+        System.out.println("equals(): " + set1.equals(set2)); 
+        // Output: true
+        System.out.println("hashCode(): " + set1.hashCode()); 
+        // Example Output: 63499 (varies)
+    }
+
+    static void sizeIsEmptyExample() {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.println("size(): " + set.size()); 
+        // Output: 2
+        System.out.println("isEmpty(): " + set.isEmpty()); 
+        // Output: false
+    }
+
+    // ----------------- MAIN -----------------
+
+    public static void main(String[] args) {
+        addExample();
+        addAllExample();
+
+        removeExample();
+        removeAllExample();
+        retainAllExample();
+        clearExample();
+
+        containsExample();
+        containsAllExample();
+
+        iteratorExample();
+        forEachExample();
+        toArrayExample();
+
+        equalsHashCodeExample();
+        sizeIsEmptyExample();
+    }
+}
+
+
+============================================================================================================
+
+TreeSet
+-------
+
+  It is a predefined implementation class of Set interface 
+  It is present inside the Java.util package 
+  It is growable in nature 
+  It will store both homogeneous and heterogeneous objects 
+  Does not allow duplicates.
+  Null elements are **not allowed** (throws `NullPointerException`).
+
+  It doesn't allow duplicate objects 
+  It doesn't  provide index 
+  It doesn't provide insertion order(not guarenty)
+  
+  Inside TreeSet all the elements will be stored in sorting order by defalut accesnding order.
+  Inside TreeSet all the elements should be stored of Comparable or Comparator Type, otherwise
+  we'll get ClassCastException
+  
+  
+  
+
+
+### **Constructors (TreeSet):**
+-----------------------------
+
+
+1. `TreeSet()` – Creates an empty TreeSet.
+2. `TreeSet(Collection c)` – Creates TreeSet containing elements from a collection (elements must be comparable).
+3. `TreeSet(Comparator c)` – Creates empty TreeSet using a custom comparator.
+
+
+### **Set Methods (from Collection Interface / used in TreeSet)**
+---------------------------------------------------------------
+
+
+* `add(E e)` – Adds element in sorted order.
+* `addAll(Collection c)` – Adds all elements from another collection.
+* `remove(Object o)` – Removes element if present.
+* `removeAll(Collection c)` – Removes all elements present in another collection.
+* `retainAll(Collection c)` – Keeps only elements also in another collection.
+* `clear()` – Removes all elements.
+* `contains(Object o)` – Checks if element exists.
+* `containsAll(Collection c)` – Checks if all elements exist in the set.
+* `isEmpty()` – Checks if set is empty.
+* `size()` – Returns the number of elements.
+* `iterator()` – Returns an iterator in sorted order.
+* `forEach(Consumer action)` – Performs action on each element.
+* `toArray()` – Converts set to Object array.
+* `toArray(T[] a)` – Converts set to typed array.
+* `equals(Object o)` – Compares sets for equality.
+* `hashCode()` – Returns hash value of the set.
+* `spliterator()` – Returns a Spliterator for the set.
+
+
+### **TreeSet-Specific / NavigableSet Methods:**
+----------------------------------------------
+
+
+* `first()` – Returns the first (lowest) element.
+* `last()` – Returns the last (highest) element.
+* `lower(E e)` – Returns greatest element less than `e`, or null if none.
+* `floor(E e)` – Returns greatest element ≤ `e`, or null if none.
+* `ceiling(E e)` – Returns least element ≥ `e`, or null if none.
+* `higher(E e)` – Returns least element > `e`, or null if none.
+* `pollFirst()` – Retrieves and removes first element.
+* `pollLast()` – Retrieves and removes last element.
+* `descendingSet()` – Returns a reverse-order view of the set.
+* `subSet(E fromElement, E toElement)` – Returns a view of elements in range `[from, to)`.
+* `headSet(E toElement)` – Returns a view of elements less than `toElement`.
+* `tailSet(E fromElement)` – Returns a view of elements greater than or equal to `fromElement`.
+
+
+
+
+import java.util.*;
+
+public class EasyTreeSetDemo {
+
+    // ----------------- ADD METHODS -----------------
+
+    static void addExample() {
+    
+    Whenever we call add(Object o) internally this method will call compareTo(Object o).
+    
+    compareTO(Object o) is present inside Comparable interface.
+    
+    Comparable(predifined order) :
+    -----------
+    It is predefined interface 
+    It is present inside the Java.long package 
+    It consists only one abstract method that is compareTO(Object o)
+    Since this interface consists only one abstract method it is also known as functional interface 
+    Inside all wrapper classes, string builder, String buffer, and String are implemented Comparable interface to perform sort order by default ascending order 
+
+	Declaration :
+	-------------
+	
+		public int compareTo(Object o);
+		
+		It returns negative value when current object should come before given object
+		It returns positive value when current object should come after the given object 
+		It returns zero when current and given objects are same.
+		
+		 example : 
+		 
+		 public int compareTo(Object obj) {
+		 
+			Integer i = (Integer) o;
+			if( this < i )
+				return -1;
+			else if( this > i) 
+				return 1;
+			else
+				return 0;
+	    }
+    
+    
+    	Comparator :
+    	------------
+    	
+    	In java By using comparable we can perform user definned sorting also but it is not recommended to use.
+    	To perform user defined order we are going to user comparator.
+    	
+    	
+    	Comparator :
+    	------------
+    	
+    	It is predefined interface
+    	It is present inside java.util package
+    	It is used to perform user sorting 
+    	It has only one abstract method as compare(Object o1, Object o2)
+    	Since it has only one abstract method it also known as functional interface.
+    	
+    	example : 
+    	---------
+    	
+    	public int compare(Object ob1, Object ob2) {
+		 
+			Integer i1 = (Integer) ob1;
+			Integer i2 = (Integer) ob2;
+			if( i1 < i2 )
+				return -1;
+			else if( i1 > i2) 
+				return 1;
+			else
+				return 0;
+	    }
+    	
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Banana");
+        set.add("Apple");
+        set.add("Orange");
+        set.add("Apple"); // duplicate ignored
+        System.out.println("add(): " + set); 
+        // Output: [Apple, Banana, Orange] (sorted)
+    }
+    
+    
+    
+
+    static void addAllExample() {
+        TreeSet<String> set1 = new TreeSet<>();
+        set1.add("Apple");
+        TreeSet<String> set2 = new TreeSet<>();
+        set2.add("Banana");
+        set2.add("Orange");
+        set1.addAll(set2);
+        System.out.println("addAll(): " + set1); 
+        // Output: [Apple, Banana, Orange] (sorted)
+    }
+
+    // ----------------- REMOVE METHODS -----------------
+
+    static void removeExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.remove("Apple");
+        System.out.println("remove(Object): " + set); 
+        // Output: [Banana]
+    }
+
+    static void removeAllExample() {
+        TreeSet<String> set1 = new TreeSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        TreeSet<String> set2 = new TreeSet<>();
+        set2.add("Banana");
+        set1.removeAll(set2);
+        System.out.println("removeAll(): " + set1); 
+        // Output: [Apple]
+    }
+
+    static void retainAllExample() {
+        TreeSet<String> set1 = new TreeSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        TreeSet<String> set2 = new TreeSet<>();
+        set2.add("Banana");
+        set1.retainAll(set2);
+        System.out.println("retainAll(): " + set1); 
+        // Output: [Banana]
+    }
+
+    static void clearExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.clear();
+        System.out.println("clear(): " + set); 
+        // Output: []
+    }
+
+    // ----------------- SEARCH METHODS -----------------
+
+    static void containsExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.println("contains(Banana): " + set.contains("Banana")); 
+        // Output: true
+    }
+
+    static void containsAllExample() {
+        TreeSet<String> set1 = new TreeSet<>();
+        set1.add("Apple");
+        set1.add("Banana");
+        TreeSet<String> set2 = new TreeSet<>();
+        set2.add("Banana");
+        System.out.println("containsAll(): " + set1.containsAll(set2)); 
+        // Output: true
+    }
+
+    // ----------------- ACCESS METHODS -----------------
+
+    static void iteratorExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Banana");
+        set.add("Apple");
+        set.add("Orange");
+        Iterator<String> it = set.iterator();
+        System.out.print("iterator(): ");
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        System.out.println(); 
+        // Output: Apple Banana Orange (sorted)
+    }
+
+    static void forEachExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.print("forEach(): ");
+        set.forEach(e -> System.out.print(e + " "));
+        System.out.println(); 
+        // Output: Apple Banana
+    }
+
+    static void toArrayExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        Object[] arr = set.toArray();
+        System.out.println("toArray(): " + Arrays.toString(arr)); 
+        // Output: [Apple, Banana]
+    }
+
+    // ----------------- TREESET SPECIFIC METHODS -----------------
+
+    static void firstLastExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.add("Orange");
+        System.out.println("first(): " + set.first()); 
+        // Output: Apple
+        System.out.println("last(): " + set.last()); 
+        // Output: Orange
+    }
+
+    static void lowerFloorCeilingHigherExample() {
+        TreeSet<Integer> set = new TreeSet<>();
+        set.add(10);
+        set.add(20);
+        set.add(30);
+        System.out.println("lower(20): " + set.lower(20)); 
+        // Output: 10
+        System.out.println("floor(20): " + set.floor(20)); 
+        // Output: 20
+        System.out.println("ceiling(25): " + set.ceiling(25)); 
+        // Output: 30
+        System.out.println("higher(25): " + set.higher(25)); 
+        // Output: 30
+    }
+
+    static void pollFirstLastExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.add("Orange");
+        System.out.println("pollFirst(): " + set.pollFirst()); 
+        // Output: Apple
+        System.out.println("pollLast(): " + set.pollLast()); 
+        // Output: Orange
+        System.out.println("Set after pollFirst & pollLast: " + set); 
+        // Output: [Banana]
+    }
+
+    static void descendingSubHeadTailExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        set.add("Orange");
+        System.out.println("descendingSet(): " + set.descendingSet()); 
+        // Output: [Orange, Banana, Apple]
+        System.out.println("subSet(Apple, Orange): " + set.subSet("Apple", "Orange")); 
+        // Output: [Apple, Banana]
+        System.out.println("headSet(Banana): " + set.headSet("Banana")); 
+        // Output: [Apple]
+        System.out.println("tailSet(Banana): " + set.tailSet("Banana")); 
+        // Output: [Banana, Orange]
+    }
+
+    // ----------------- MISCELLANEOUS -----------------
+
+    static void equalsHashCodeExample() {
+        TreeSet<String> set1 = new TreeSet<>();
+        set1.add("Apple");
+        TreeSet<String> set2 = new TreeSet<>();
+        set2.add("Apple");
+        System.out.println("equals(): " + set1.equals(set2)); 
+        // Output: true
+        System.out.println("hashCode(): " + set1.hashCode()); 
+        // Example Output: 63499 (varies)
+    }
+
+    static void sizeIsEmptyExample() {
+        TreeSet<String> set = new TreeSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.println("size(): " + set.size()); 
+        // Output: 2
+        System.out.println("isEmpty(): " + set.isEmpty()); 
+        // Output: false
+    }
+
+    // ----------------- MAIN -----------------
+
+    public static void main(String[] args) {
+        addExample();
+        addAllExample();
+
+        removeExample();
+        removeAllExample();
+        retainAllExample();
+        clearExample();
+
+        containsExample();
+        containsAllExample();
+
+        iteratorExample();
+        forEachExample();
+        toArrayExample();
+
+        firstLastExample();
+        lowerFloorCeilingHigherExample();
+        pollFirstLastExample();
+        descendingSubHeadTailExample();
+
+        equalsHashCodeExample();
+        sizeIsEmptyExample();
+    }
+}
+

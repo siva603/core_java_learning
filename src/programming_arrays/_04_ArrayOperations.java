@@ -3,6 +3,68 @@ package programming_arrays;
 import java.util.Arrays;
 
 public class _04_ArrayOperations {
+	
+	
+	// 1. Create/Insert an element at the end of the array
+	// Question: Insert a given element into the end of an array.
+	// Example: arr = {1,2,3}, element = 4 → {1,2,3,4}
+	public static int[] insertAtEnd(int[] arr, int element) {
+	    int n = arr.length;
+	    int[] newArr = new int[n + 1];
+	    for (int i = 0; i < n; i++) newArr[i] = arr[i];
+	    newArr[n] = element;
+	    return newArr;
+	}
+
+	
+	
+	// 2. Read/Print the array elements
+	// Question: Print all elements of an array.
+	// Example: arr = {1,2,3} → Output: 1 2 3
+	public static void printArray(int[] arr) {
+	    for (int num : arr) System.out.print(num + " ");
+	    System.out.println();
+	}
+
+	
+	
+	// 3. Update an element at a specific index
+	// Question: Update the element at a given index in the array.
+	// Example: arr = {1,2,3}, index = 1, value = 5 → {1,5,3}
+	public static void updateElement(int[] arr, int index, int value) {
+	    if (index >= 0 && index < arr.length) arr[index] = value;
+	}
+	
+	
+	
+
+	// 4. Delete an element at a specific index
+	// Question: Delete the element at a given index in the array.
+	// Example: arr = {1,2,3}, index = 1 → {1,3}
+	public static int[] deleteElement(int[] arr, int index) {
+	    int n = arr.length;
+	    if (index < 0 || index >= n) return arr;
+	    int[] newArr = new int[n - 1];
+	    for (int i = 0, j = 0; i < n; i++) {
+	        if (i != index) newArr[j++] = arr[i];
+	    }
+	    return newArr;
+	}
+	
+	
+
+	// 5. Search for an element in the array
+	// Question: Find the index of an element in the array. Return -1 if not found.
+	// Example: arr = {1,2,3}, element = 2 → Output: 1
+	public static int searchElement(int[] arr, int element) {
+	    for (int i = 0; i < arr.length; i++) {
+	        if (arr[i] == element) return i;
+	    }
+	    return -1;
+	}
+
+	
+	
 
 //	Write a Java program to find the minimum element in a static array using only a normal for loop and Integer.MAX_VALUE.
 //

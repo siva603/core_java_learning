@@ -1,0 +1,611 @@
+
+
+# HashMap
+
+---
+
+* `HashMap` implements the `Map` interface.
+* It is in the `java.util` package.
+* Stores key-value pairs.
+* Keys must be unique; values can be duplicate.
+* Allows **one null key** and multiple null values.
+* Does **not maintain order** of insertion.
+* Not synchronized (thread-unsafe). Use `Collections.synchronizedMap()` for thread safety.
+* Provides constant-time performance for basic operations (`get` and `put`) on average.
+
+---
+
+### **Constructors**
+
+1. `HashMap()` – Creates empty map with default capacity 16 and load factor 0.75.
+2. `HashMap(int initialCapacity)` – Creates map with specified initial capacity.
+3. `HashMap(int initialCapacity, float loadFactor)` – Creates map with specified capacity and load factor.
+4. `HashMap(Map m)` – Creates map containing the mappings of the specified map.
+
+---
+
+### **HashMap Methods**
+
+* `put(K key, V value)` – Adds key-value pair; overwrites if key exists.
+* `putIfAbsent(K key, V value)` – Adds key-value only if key is absent.
+* `get(Object key)` – Returns value for the given key; null if not found.
+* `remove(Object key)` – Removes mapping for the key; returns value removed.
+* `remove(Object key, Object value)` – Removes only if key maps to value.
+* `containsKey(Object key)` – Checks if key exists.
+* `containsValue(Object value)` – Checks if value exists.
+* `size()` – Returns number of mappings.
+* `isEmpty()` – Checks if map is empty.
+* `clear()` – Removes all mappings.
+* `keySet()` – Returns a set view of keys.
+* `values()` – Returns a collection view of values.
+* `entrySet()` – Returns a set of key-value mappings.
+* `replace(K key, V value)` – Replaces value for given key if exists.
+* `replace(K key, V oldValue, V newValue)` – Replaces value only if currently mapped to oldValue.
+* `forEach(BiConsumer action)` – Performs the given action for each entry.
+
+---
+
+```java
+import java.util.*;
+
+public class EasyHashMapDemo {
+
+    // ----------------- ADD METHODS -----------------
+
+    static void putExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("put(): " + map); 
+        // Output: {Apple=10, Banana=20}
+    }
+
+    static void putIfAbsentExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.putIfAbsent("Apple", 50);
+        map.putIfAbsent("Orange", 30);
+        System.out.println("putIfAbsent(): " + map); 
+        // Output: {Apple=10, Orange=30}
+    }
+
+    // ----------------- REMOVE METHODS -----------------
+
+    static void removeExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.remove("Apple");
+        System.out.println("remove(key): " + map); 
+        // Output: {Banana=20}
+    }
+
+    static void removeKeyValueExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.remove("Apple", 30); // Won't remove
+        map.remove("Banana", 20); // Will remove
+        System.out.println("remove(key,value): " + map); 
+        // Output: {Apple=10}
+    }
+
+    // ----------------- ACCESS METHODS -----------------
+
+    static void getExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("get(Apple): " + map.get("Apple")); 
+        // Output: 10
+    }
+
+    static void containsExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("containsKey(Apple): " + map.containsKey("Apple")); 
+        System.out.println("containsValue(50): " + map.containsValue(50)); 
+        // Output: true false
+    }
+
+    // ----------------- MISCELLANEOUS -----------------
+
+    static void sizeIsEmptyExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        System.out.println("isEmpty(): " + map.isEmpty()); // true
+        map.put("Apple", 10);
+        System.out.println("size(): " + map.size()); // 1
+    }
+
+    static void clearExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.clear();
+        System.out.println("clear(): " + map); 
+        // Output: {}
+    }
+
+    static void keyValuesEntryExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("keySet(): " + map.keySet()); 
+        System.out.println("values(): " + map.values()); 
+        System.out.println("entrySet(): " + map.entrySet()); 
+        // Output: [Apple, Banana] [10, 20] [Apple=10, Banana=20]
+    }
+
+    static void replaceExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.replace("Apple", 50);
+        System.out.println("replace(key,value): " + map); 
+        // Output: {Apple=50}
+        map.replace("Apple", 50, 100);
+        System.out.println("replace(key,oldValue,newValue): " + map); 
+        // Output: {Apple=100}
+    }
+
+    static void forEachExample() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.forEach((k, v) -> System.out.println(k + " -> " + v));
+        // Output:
+        // Apple -> 10
+        // Banana -> 20
+    }
+
+    // ----------------- MAIN -----------------
+
+    public static void main(String[] args) {
+        putExample();
+        putIfAbsentExample();
+
+        removeExample();
+        removeKeyValueExample();
+
+        getExample();
+        containsExample();
+
+        sizeIsEmptyExample();
+        clearExample();
+
+        keyValuesEntryExample();
+        replaceExample();
+        forEachExample();
+    }
+}
+
+
+=================================================================================================================
+
+
+Perfect 👌 Here’s the **LinkedHashMap** in the **same detailed style** as LinkedList/Vector/HashMap, with full documentation, constructors, methods, and examples:
+
+---
+
+# LinkedHashMap
+
+---
+
+* `LinkedHashMap` implements the `Map` interface and extends `HashMap`.
+* It is in the `java.util` package.
+* Maintains **insertion order** (or access order if configured).
+* Keys must be unique; values can be duplicate.
+* Allows **one null key** and multiple null values.
+* Not synchronized (thread-unsafe). Use `Collections.synchronizedMap()` for thread safety.
+* Provides constant-time performance for basic operations (`get` and `put`) on average.
+* Useful when iteration order matters.
+
+---
+
+### **Constructors**
+
+1. `LinkedHashMap()` – Creates empty map with default capacity 16 and load factor 0.75.
+2. `LinkedHashMap(int initialCapacity)` – Creates map with specified initial capacity.
+3. `LinkedHashMap(int initialCapacity, float loadFactor)` – Creates map with specified capacity and load factor.
+4. `LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)` – Creates map with insertion-order (false) or access-order (true).
+5. `LinkedHashMap(Map m)` – Creates map containing the mappings of the specified map.
+
+---
+
+### **LinkedHashMap Methods**
+
+* `put(K key, V value)` – Adds key-value pair; overwrites if key exists.
+* `putIfAbsent(K key, V value)` – Adds key-value only if key is absent.
+* `get(Object key)` – Returns value for the given key; null if not found.
+* `remove(Object key)` – Removes mapping for the key; returns value removed.
+* `remove(Object key, Object value)` – Removes only if key maps to value.
+* `containsKey(Object key)` – Checks if key exists.
+* `containsValue(Object value)` – Checks if value exists.
+* `size()` – Returns number of mappings.
+* `isEmpty()` – Checks if map is empty.
+* `clear()` – Removes all mappings.
+* `keySet()` – Returns a set view of keys.
+* `values()` – Returns a collection view of values.
+* `entrySet()` – Returns a set of key-value mappings.
+* `replace(K key, V value)` – Replaces value for given key if exists.
+* `replace(K key, V oldValue, V newValue)` – Replaces value only if currently mapped to oldValue.
+* `forEach(BiConsumer action)` – Performs the given action for each entry.
+* `clone()` – Returns a shallow copy of the LinkedHashMap.
+
+---
+
+```java
+import java.util.*;
+
+public class EasyLinkedHashMapDemo {
+
+    // ----------------- ADD METHODS -----------------
+
+    static void putExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("put(): " + map); 
+        // Output: {Apple=10, Banana=20}
+    }
+
+    static void putIfAbsentExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.putIfAbsent("Apple", 50);
+        map.putIfAbsent("Orange", 30);
+        System.out.println("putIfAbsent(): " + map); 
+        // Output: {Apple=10, Orange=30}
+    }
+
+    // ----------------- REMOVE METHODS -----------------
+
+    static void removeExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.remove("Apple");
+        System.out.println("remove(key): " + map); 
+        // Output: {Banana=20}
+    }
+
+    static void removeKeyValueExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.remove("Apple", 30); // Won't remove
+        map.remove("Banana", 20); // Will remove
+        System.out.println("remove(key,value): " + map); 
+        // Output: {Apple=10}
+    }
+
+    // ----------------- ACCESS METHODS -----------------
+
+    static void getExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("get(Apple): " + map.get("Apple")); 
+        // Output: 10
+    }
+
+    static void containsExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("containsKey(Apple): " + map.containsKey("Apple")); 
+        System.out.println("containsValue(50): " + map.containsValue(50)); 
+        // Output: true false
+    }
+
+    // ----------------- MISCELLANEOUS -----------------
+
+    static void sizeIsEmptyExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        System.out.println("isEmpty(): " + map.isEmpty()); // true
+        map.put("Apple", 10);
+        System.out.println("size(): " + map.size()); // 1
+    }
+
+    static void clearExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.clear();
+        System.out.println("clear(): " + map); 
+        // Output: {}
+    }
+
+    static void keyValuesEntryExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("keySet(): " + map.keySet()); 
+        System.out.println("values(): " + map.values()); 
+        System.out.println("entrySet(): " + map.entrySet()); 
+        // Output: [Apple, Banana] [10, 20] [Apple=10, Banana=20]
+    }
+
+    static void replaceExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.replace("Apple", 50);
+        System.out.println("replace(key,value): " + map); 
+        // Output: {Apple=50}
+        map.replace("Apple", 50, 100);
+        System.out.println("replace(key,oldValue,newValue): " + map); 
+        // Output: {Apple=100}
+    }
+
+    static void forEachExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.forEach((k, v) -> System.out.println(k + " -> " + v));
+        // Output:
+        // Apple -> 10
+        // Banana -> 20
+    }
+
+    static void cloneExample() {
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        LinkedHashMap<String, Integer> copy = (LinkedHashMap<String, Integer>) map.clone();
+        System.out.println("clone(): " + copy); 
+        // Output: {Apple=10, Banana=20}
+    }
+
+    // ----------------- MAIN -----------------
+
+    public static void main(String[] args) {
+        putExample();
+        putIfAbsentExample();
+
+        removeExample();
+        removeKeyValueExample();
+
+        getExample();
+        containsExample();
+
+        sizeIsEmptyExample();
+        clearExample();
+
+        keyValuesEntryExample();
+        replaceExample();
+        forEachExample();
+        cloneExample();
+    }
+}
+
+
+===========================================================================================================
+
+
+Perfect 👌 Here’s the **TreeMap** in the **same detailed style** as LinkedList/Vector/HashMap/LinkedHashMap, with full documentation, constructors, methods, and examples:
+
+---
+
+# TreeMap
+
+---
+
+* `TreeMap` implements the `NavigableMap` interface and extends `AbstractMap`.
+* It is in the `java.util` package.
+* Maintains **keys in sorted order** (natural order or custom Comparator).
+* Keys must be unique; values can be duplicate.
+* Does **not allow null keys** (throws `NullPointerException`), but allows multiple null values.
+* Not synchronized (thread-unsafe). Use `Collections.synchronizedSortedMap()` for thread safety.
+* Provides log(n) time complexity for `get`, `put`, `remove`.
+* Useful when a sorted map is required.
+
+---
+
+### **Constructors**
+
+1. `TreeMap()` – Creates empty TreeMap with natural ordering.
+2. `TreeMap(Comparator<? super K> comparator)` – Creates empty TreeMap with custom comparator.
+3. `TreeMap(Map<? extends K, ? extends V> m)` – Creates TreeMap with mappings from given map (sorted by natural order).
+4. `TreeMap(SortedMap<K, ? extends V> m)` – Creates TreeMap with mappings from a sorted map.
+
+---
+
+### **TreeMap Methods**
+
+* `put(K key, V value)` – Adds key-value pair; overwrites if key exists.
+* `putIfAbsent(K key, V value)` – Adds key-value only if key is absent.
+* `get(Object key)` – Returns value for the given key; null if not found.
+* `remove(Object key)` – Removes mapping for the key; returns value removed.
+* `remove(Object key, Object value)` – Removes only if key maps to value.
+* `containsKey(Object key)` – Checks if key exists.
+* `containsValue(Object value)` – Checks if value exists.
+* `size()` – Returns number of mappings.
+* `isEmpty()` – Checks if map is empty.
+* `clear()` – Removes all mappings.
+* `keySet()` – Returns a set view of keys.
+* `values()` – Returns a collection view of values.
+* `entrySet()` – Returns a set of key-value mappings.
+* `firstKey()` – Returns first (lowest) key.
+* `lastKey()` – Returns last (highest) key.
+* `ceilingKey(K key)` – Returns least key ≥ given key, or null.
+* `floorKey(K key)` – Returns greatest key ≤ given key, or null.
+* `higherKey(K key)` – Returns least key > given key, or null.
+* `lowerKey(K key)` – Returns greatest key < given key, or null.
+* `subMap(K fromKey, K toKey)` – Returns portion of map from `fromKey` (inclusive) to `toKey` (exclusive).
+* `headMap(K toKey)` – Returns portion of map with keys < `toKey`.
+* `tailMap(K fromKey)` – Returns portion of map with keys ≥ `fromKey`.
+* `forEach(BiConsumer action)` – Performs the given action for each entry.
+* `clone()` – Returns a shallow copy of the TreeMap.
+
+---
+
+```java
+import java.util.*;
+
+public class EasyTreeMapDemo {
+
+    // ----------------- ADD METHODS -----------------
+
+    static void putExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.put("Orange", 15);
+        System.out.println("put(): " + map); 
+        // Output: {Apple=10, Banana=20, Orange=15} (sorted by key)
+    }
+
+    static void putIfAbsentExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.putIfAbsent("Apple", 50);
+        map.putIfAbsent("Mango", 30);
+        System.out.println("putIfAbsent(): " + map); 
+        // Output: {Apple=10, Mango=30}
+    }
+
+    // ----------------- REMOVE METHODS -----------------
+
+    static void removeExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.remove("Apple");
+        System.out.println("remove(key): " + map); 
+        // Output: {Banana=20}
+    }
+
+    static void removeKeyValueExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.remove("Apple", 30); // Won't remove
+        map.remove("Banana", 20); // Will remove
+        System.out.println("remove(key,value): " + map); 
+        // Output: {Apple=10}
+    }
+
+    // ----------------- ACCESS METHODS -----------------
+
+    static void getExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("get(Apple): " + map.get("Apple")); 
+        // Output: 10
+    }
+
+    static void containsExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("containsKey(Apple): " + map.containsKey("Apple")); 
+        System.out.println("containsValue(50): " + map.containsValue(50)); 
+        // Output: true false
+    }
+
+    // ----------------- MISCELLANEOUS -----------------
+
+    static void sizeIsEmptyExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        System.out.println("isEmpty(): " + map.isEmpty()); // true
+        map.put("Apple", 10);
+        System.out.println("size(): " + map.size()); // 1
+    }
+
+    static void clearExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.clear();
+        System.out.println("clear(): " + map); 
+        // Output: {}
+    }
+
+    static void keyValuesEntryExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println("keySet(): " + map.keySet()); 
+        System.out.println("values(): " + map.values()); 
+        System.out.println("entrySet(): " + map.entrySet()); 
+        // Output: [Apple, Banana] [10, 20] [Apple=10, Banana=20]
+    }
+
+    // ----------------- TREE SPECIFIC METHODS -----------------
+
+    static void firstLastKeyExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.put("Orange", 15);
+        System.out.println("firstKey(): " + map.firstKey()); // Apple
+        System.out.println("lastKey(): " + map.lastKey()); // Orange
+    }
+
+    static void ceilingFloorExample() {
+        TreeMap<Integer, String> map = new TreeMap<>();
+        map.put(10, "A");
+        map.put(20, "B");
+        map.put(30, "C");
+        System.out.println("ceilingKey(15): " + map.ceilingKey(15)); // 20
+        System.out.println("floorKey(25): " + map.floorKey(25)); // 20
+        System.out.println("higherKey(20): " + map.higherKey(20)); // 30
+        System.out.println("lowerKey(20): " + map.lowerKey(20)); // 10
+    }
+
+    static void subHeadTailMapExample() {
+        TreeMap<Integer, String> map = new TreeMap<>();
+        map.put(10, "A");
+        map.put(20, "B");
+        map.put(30, "C");
+        System.out.println("subMap(10,30): " + map.subMap(10, 30)); // {10=A,20=B}
+        System.out.println("headMap(20): " + map.headMap(20)); // {10=A}
+        System.out.println("tailMap(20): " + map.tailMap(20)); // {20=B,30=C}
+    }
+
+    static void forEachExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.forEach((k, v) -> System.out.println(k + " -> " + v));
+        // Output:
+        // Apple -> 10
+        // Banana -> 20
+    }
+
+    static void cloneExample() {
+        TreeMap<String, Integer> map = new TreeMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        TreeMap<String, Integer> copy = (TreeMap<String, Integer>) map.clone();
+        System.out.println("clone(): " + copy); 
+        // Output: {Apple=10, Banana=20}
+    }
+
+    // ----------------- MAIN -----------------
+
+    public static void main(String[] args) {
+        putExample();
+        putIfAbsentExample();
+
+        removeExample();
+        removeKeyValueExample();
+
+        getExample();
+        containsExample();
+
+        sizeIsEmptyExample();
+        clearExample();
+
+        keyValuesEntryExample();
+        firstLastKeyExample();
+        ceilingFloorExample();
+        subHeadTailMapExample();
+        forEachExample();
+        cloneExample();
+    }
+}
+
+
+

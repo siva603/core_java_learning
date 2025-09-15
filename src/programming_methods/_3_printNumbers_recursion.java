@@ -69,7 +69,7 @@ public class _3_printNumbers_recursion {
 		// recursion call
 		int digit = n%10;
 		if(digit%2==0)
-			return 1 + countEvenDigits(n/10)
+			return 1 + countEvenDigits(n/10);
 		else
 			return countEvenDigits(n/10);
 		

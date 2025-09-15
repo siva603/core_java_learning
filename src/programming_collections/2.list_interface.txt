@@ -1,0 +1,1286 @@
+Limitations of array
+--------------------
+
+In Java array is a collection of homogeneous elements 
+We can't store heterogeneous elements in array if we try to store we will get compile time error 
+In Java array is fixed in size 
+We can't increase or decrease during the runtime if we try to do we will get index out of bounds exception 
+ARI requires complex logic to perform CRUD operations 
+To overcome above disadvantages of array we are going to to use Collection framework 
+
+
+Collection Framework :
+----------------------
+
+In Java Collection framework provides a mechanism to store group of objects
+In collection framework we can store both homogeneous and heterogeneous objects 
+Collection Framework global in size we can increase or decrease the size of the collection during the runtime 
+ 
+types of Collections
+--------------------
+in java based on declaration divided into 2 types
+
+1. Raw Collection :
+-------------------
+It's used to store both homo and heterogenous objects. Incase of raw collection all elements are 
+stored in the form of Objects
+
+
+2. Generic Collection
+---------------------
+ It's used to store only homogenous type of objects
+ 
+ ClassName<datatype> variableName = new ClassName<>();
+ 
+ 
+Framework : 
+----------
+It's slice of code which contains common logic ( add, remove, clear, update, search etc).
+
+Collection Hierarchy :
+--------------------
+
+ The `Collection` interface is a predefined interface in the `java.util` package.
+ It's the root of the Collection Framework and stores both homogeneous and heterogeneous objects. 
+ It is also growable and resizable.
+ 
+
+														Iterator (interface)
+															      ^
+																  |
+																  |
+													      Collection  (inteface)
+													/				|			    	\
+											       /				|			     	 \
+											      /					|			 	      \
+											     /					|			  	       \
+											    /					|						\
+											   /					|						 \	
+											  /						|				  		  \
+								List(inteface)            		Set(interface)	    	      Queue(interface)
+							/		|			\				/		|			\			|
+						   /		|			 \             /		|			 \			|
+						  /			|			  \           /			|			  \			ProirityQueue(c)
+					     /			|			   \ HashSet(c)  LinkedHashSet(c)   TreeSet(c)
+					    /			|				\ 
+					   /			|    			 \
+		ArrayList(class)	LinkedList(class)	  Vector(class)
+														|
+														|
+													Stack(class)
+														
+														   
+
+
+
+
+**Important Methods of `Collection` Interface**
+
+| Purpose 			   | Return Type | Method(s) |
+|----------------------|-------------|-----------|
+| To add an element    | `boolean`   | `add(Object)`, `addAll(Collection)` |
+| To remove an element | `boolean`   | `remove(Object)`, `removeAll(Collection)`, `retainAll(Collection)`, `clear()` |
+| To search an element | `boolean`   | `contains(Object)`, `containsAll(Collection)` |
+| To access an element | `Iterator`  | `iterator()` |
+| Miscellaneous        | `size()`, `toArray()`, `isEmpty()`, `hashCode()`, `equals()` |
+
+
+
+================================================================================================================
+
+
+`List` Interface
+----------------
+
+The `List` interface is a predefined child interface of `Collection` interface
+which is  in the `java.util` package.
+It stores homogeneous and heterogeneous objects.
+
+It allows duplicates objects
+It provides index and maintains insertion order.
+
+
+
+**Important Methods of `List` Interface**
+
+| Purpose 			   | Return Type                 | Method(s) |
+|----------------------|-----------------------------|-----------|
+| To add an element    | `boolean`, `void`           | `add(Object)`, `add(index, Object)`, `addAll(Collection)`, `addAll(index, Collection)` |
+| To remove an element | `boolean`, `Object`, `void` | `remove(Object)`, `remove(int index)`, `removeAll(Collection)`, `clear()` |
+| To search an element | `boolean`, `int`            | `contains(Object)`, `containsAll(Collection)`, `indexOf(Object)`, `lastIndexOf(Object)` |
+| To access an element | `Object`, `Iterator`, `ListIterator`, `forEach` loop | `get(int index)`, `iterator()`, `listIterator()`, `forEach` |
+| Miscellaneous        | `size()`, `isEmpty()`, `hashCode()`, `equals()`, `toArray()` |
+
+
+WHICH CLASSES ARE USED FOR WHICH PURPOSE
+-----------------------------------------
+
+ArrayList  -> search & random access & asynchronous methods ( BEST) 
+
+LinkedList -> insertion & deletion & asynchronous methods (BEST)
+
+Vector     -> Search & random access & synchronous methods (BEST)
+
+Stack      -> FIFO order & search & random access & synchronous methods (BEST)
+
+
+================================================================================================================
+	
+
+ArrayList :
+-----------
+
+`ArrayList` is a predefined child implementation of the `List` interface
+ It is  in the `java.util` package. 
+ It is growable.
+ It provides index.
+ It allows duplicates and maintains insertion order. 
+ ArrayList all methods are asynchronous methods
+
+**Constructors:**
+---------------
+
+1.  `ArrayList()`: Creates a list with a default capacity of 10. The capacity grows by `(current_capacity * 3 / 2) + 1`.
+2.  `ArrayList(int initialSize)`: Creates a list with a specified initial capacity.
+3.  `ArrayList(Collection c)`: Creates a list containing the elements of a given collection.
+
+
+
+
+import java.util.*;
+
+public class EasyArrayListDemo {
+
+    // ----------------- ADD METHODS -----------------
+
+    // add(Object) -> boolean : adds element at end
+    static void addExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println("add(Object): " + list); 
+        // Output: [Apple, Banana]
+        
+    }
+
+    // add(index, Object) -> void : adds element at given index
+    static void addAtIndexExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Orange");
+        list.add(1, "Banana");
+        System.out.println("add(index,Object): " + list); 
+        // Output: [Apple, Banana, Orange]
+        
+    }
+
+    // addAll(Collection) -> boolean : add all elements from another list
+    static void addAllExample() {
+        
+        ArrayList<String> list1 = new ArrayList<>();
+        list1.add("Apple");
+        ArrayList<String> list2 = new ArrayList<>();
+        list2.add("Banana");
+        list2.add("Orange");
+        list1.addAll(list2);
+        System.out.println("addAll(Collection): " + list1); 
+        // Output: [Apple, Banana, Orange]
+        
+    }
+
+    // addAll(index, Collection) -> boolean : insert all at given index
+    static void addAllAtIndexExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Orange");
+        ArrayList<String> newFruits = new ArrayList<>();
+        newFruits.add("Banana");
+        newFruits.add("Grapes");
+        list.addAll(1, newFruits);
+        System.out.println("addAll(index,Collection): " + list); 
+        // Output: [Apple, Banana, Grapes, Orange]
+        
+    }
+
+    // ----------------- REMOVE METHODS -----------------
+
+    // remove(Object) -> boolean
+    static void removeObjectExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.remove("Banana");
+        System.out.println("remove(Object): " + list); 
+        // Output: [Apple]
+        
+    }
+
+    // remove(index) -> Object
+    static void removeIndexExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        list.remove(1);  // removes Banana
+        System.out.println("remove(index): " + list); 
+        // Output: [Apple, Orange]
+        
+    }
+
+    // removeAll(Collection) -> boolean
+    // it will remove mathcing objects only
+    static void removeAllExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        ArrayList<String> removeList = new ArrayList<>();
+        removeList.add("Banana");
+        removeList.add("Orange");
+        list.removeAll(removeList);
+        System.out.println("removeAll(Collection): " + list); 
+        // Output: [Apple]
+        
+    }
+    
+    
+    // removeAll(Collection) -> boolean
+    // it will keep mathcing objects and remove others objects
+    
+    static void retainAllExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        ArrayList<String> retainList = new ArrayList<>();
+        removeList.add("Banana");
+        removeList.add("Orange");
+        list.retainAll(retainList);
+        System.out.println("retainAll(Collection): " + list); 
+        // Output: [Apple]
+        
+    }
+    
+    
+
+    // clear() -> void
+    static void clearExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.clear();
+        System.out.println("clear(): " + list); 
+        // Output: []
+        
+    }
+
+    // ----------------- SEARCH METHODS -----------------
+
+    // contains(Object) -> boolean
+    static void containsExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println("contains(Banana): " + list.contains("Banana")); 
+        // Output: true
+        
+    }
+
+    // containsAll(Collection) -> boolean
+    static void containsAllExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        ArrayList<String> checkList = new ArrayList<>();
+        checkList.add("Apple");
+        checkList.add("Orange");
+        System.out.println("containsAll([Apple, Orange]): " + list.containsAll(checkList)); 
+        // Output: true
+        
+    }
+
+    // indexOf(Object) -> int
+    static void indexOfExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        list.add("Banana");
+        System.out.println("indexOf(Banana): " + list.indexOf("Banana")); 
+        // Output: 1
+        
+    }
+
+    // lastIndexOf(Object) -> int
+    static void lastIndexOfExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        list.add("Banana");
+        System.out.println("lastIndexOf(Banana): " + list.lastIndexOf("Banana")); 
+        // Output: 3
+        
+    }
+
+    // ----------------- ACCESS METHODS -----------------
+
+    // get(index) -> Object
+    static void getExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        System.out.println("get(1): " + list.get(1)); 
+        // Output: Banana
+        
+    }
+
+    // iterator() -> Iterator
+    static void iteratorExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        System.out.print("iterator(): ");
+        Iterator<String> it = list.iterator();
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        System.out.println();
+        // Output: Apple Banana Orange
+        
+    }
+
+    // listIterator() -> ListIterator
+    static void listIteratorExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        System.out.print("listIterator(): ");
+        ListIterator<String> it = list.listIterator();
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        System.out.println();
+        // Output: Apple Banana Orange
+        
+    }
+
+    // forEach loop
+    static void forEachExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        System.out.print("forEach: ");
+        for (String fruit : list) {
+            System.out.print(fruit + " ");
+        }
+        System.out.println();
+        // Output: Apple Banana Orange
+        
+    }
+
+    // ----------------- MISCELLANEOUS -----------------
+
+    // size() -> int
+    static void sizeExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println("size(): " + list.size()); 
+        // Output: 2
+        
+    }
+
+    // isEmpty() -> boolean
+    static void isEmptyExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        System.out.println("isEmpty(): " + list.isEmpty()); 
+        // Output: true
+        
+    }
+
+    // hashCode() -> int
+    static void hashCodeExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println("hashCode(): " + list.hashCode()); 
+        // Output: some integer
+        
+    }
+
+    // equals(Object) -> boolean
+    static void equalsExample() {
+        
+        ArrayList<String> list1 = new ArrayList<>();
+        list1.add("Apple");
+        list1.add("Banana");
+        ArrayList<String> list2 = new ArrayList<>();
+        list2.add("Apple");
+        list2.add("Banana");
+        System.out.println("equals(): " + list1.equals(list2)); 
+        // Output: true
+        
+    }
+
+    // toArray() -> Object[]
+    static void toArrayExample() {
+        
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        Object[] arr = list.toArray();
+        System.out.println("toArray(): " + Arrays.toString(arr)); 
+        // Output: [Apple, Banana]
+        
+    }
+
+    // ----------------- MAIN -----------------
+    
+    public static void main(String[] args) {
+    
+        addExample();
+        addAtIndexExample();
+        addAllExample();
+        addAllAtIndexExample();
+        
+        removeObjectExample();
+        removeIndexExample();
+        removeAllExample();
+        retainAllExample();
+        clearExample();
+        
+        containsExample();
+        containsAllExample();
+        indexOfExample();
+        lastIndexOfExample();
+        
+        getExample();
+        iteratorExample();
+        listIteratorExample();
+        forEachExample();
+        
+        sizeExample();
+        isEmptyExample();
+        hashCodeExample();
+        equalsExample();
+        toArrayExample();
+    }
+}
+
+ArrayList Assignments
+---------------------
+1. w.a.p to store student objects in ArrayList & print a properties.
+
+2. w.a.p to store mobile objects into ArrayList and print all properties of mobile objects using for each loop.
+
+3. w.a.p to store employee objects into ArrayLisst and print all propetties of employee objects using for each loop.
+
+====================================================================================================
+
+LinkedList : 
+----------
+
+
+* `LinkedList` is a predefined child implementation of the `List` and `Deque` interfaces.
+* It is in the `java.util` package.
+* It is growable.
+* It provides index-based access (like ArrayList) but slower compared to ArrayList.
+* It allows duplicates and maintains insertion order.
+* Unlike `ArrayList`, insertion and deletion are faster (because it is node-based).
+* All methods are **asynchronous** (not thread-safe). Use `Collections.synchronizedList()` for synchronization.
+
+---
+
+### **Constructors:**
+
+1. `LinkedList()` – Creates an empty linked list.
+2. `LinkedList(Collection c)` – Creates a list containing the elements of a given collection.
+
+---
+
+LinkedList-Specific Methods (extra methods not in ArrayList):
+------------------------------------------------------------
+
+		addFirst(Element): Inserts element at the beginning.
+		
+		addLast(Element): Inserts element at the end.
+		
+		getFirst(): Returns first element (throws exception if empty).
+		
+		getLast(): Returns last element (throws exception if empty).
+		
+		removeFirst(): Removes and returns first element.
+		
+		removeLast(): Removes and returns last element.
+		
+		offer(Element): Adds element at the end (like queue).
+		
+		poll(): Retrieves and removes first element (returns null if empty).
+		
+		peek(): Retrieves first element without removing (returns null if empty).
+		
+
+
+
+
+import java.util.*;
+
+public class EasyLinkedListDemo {
+
+    // ----------------- ADD METHODS -----------------
+
+    static void addExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println("add(Object): " + list); 
+        // Output: [Apple, Banana]
+        
+    }
+
+    static void addAtIndexExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Orange");
+        list.add(1, "Banana");
+        System.out.println("add(index,Object): " + list); 
+        // Output: [Apple, Banana, Orange]
+        
+    }
+
+    static void addAllExample() {
+        
+        LinkedList<String> list1 = new LinkedList<>();
+        list1.add("Apple");
+        LinkedList<String> list2 = new LinkedList<>();
+        list2.add("Banana");
+        list2.add("Orange");
+        list1.addAll(list2);
+        System.out.println("addAll(Collection): " + list1); 
+        // Output: [Apple, Banana, Orange]
+        
+    }
+
+    static void addAllAtIndexExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Orange");
+        LinkedList<String> newFruits = new LinkedList<>();
+        newFruits.add("Banana");
+        newFruits.add("Grapes");
+        list.addAll(1, newFruits);
+        System.out.println("addAll(index,Collection): " + list); 
+        // Output: [Apple, Banana, Grapes, Orange]
+        
+    }
+
+    // ----------------- REMOVE METHODS -----------------
+
+    static void removeObjectExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.remove("Banana");
+        System.out.println("remove(Object): " + list); 
+        // Output: [Apple]
+        
+    }
+
+    static void removeIndexExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        list.remove(1);
+        System.out.println("remove(index): " + list); 
+        // Output: [Apple, Orange]
+        
+    }
+
+    static void clearExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.clear();
+        System.out.println("clear(): " + list); 
+        // Output: []
+        
+    }
+
+    // ----------------- SEARCH METHODS -----------------
+
+    static void containsExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println("contains(Banana): " + list.contains("Banana")); 
+        // Output: true
+        
+    }
+
+    static void indexOfExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        list.add("Banana");
+        System.out.println("indexOf(Banana): " + list.indexOf("Banana")); 
+        // Output: 1
+        
+    }
+
+    static void lastIndexOfExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        list.add("Banana");
+        System.out.println("lastIndexOf(Banana): " + list.lastIndexOf("Banana")); 
+        // Output: 3
+        
+    }
+
+    // ----------------- ACCESS METHODS -----------------
+
+    static void getExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        System.out.println("get(1): " + list.get(1)); 
+        // Output: Banana
+        
+    }
+
+    static void iteratorExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+        Iterator<String> it = list.iterator();
+        System.out.print("iterator(): ");
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        System.out.println();
+        // Output: Apple Banana Orange
+        
+    }
+
+    // ----------------- MISCELLANEOUS -----------------
+
+    static void sizeExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println("size(): " + list.size()); 
+        // Output: 2
+        
+    }
+
+    static void isEmptyExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        System.out.println("isEmpty(): " + list.isEmpty()); 
+        // Output: true
+        
+    }
+
+    // ----------------- LINKEDLIST SPECIFIC METHODS -----------------
+
+    static void addFirstExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Banana");
+        list.addFirst("Apple");
+        System.out.println("addFirst(): " + list); 
+        // Output: [Apple, Banana]
+        
+    }
+
+    static void addLastExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.addLast("Banana");
+        System.out.println("addLast(): " + list); 
+        // Output: [Apple, Banana]
+        
+    }
+
+    static void getFirstExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println("getFirst(): " + list.getFirst()); 
+        // Output: Apple
+        
+    }
+
+    static void getLastExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println("getLast(): " + list.getLast()); 
+        // Output: Banana
+        
+    }
+
+    static void removeFirstExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.removeFirst();
+        System.out.println("removeFirst(): " + list); 
+        // Output: [Banana]
+        
+    }
+
+    static void removeLastExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.removeLast();
+        System.out.println("removeLast(): " + list); 
+        // Output: [Apple]
+        
+    }
+
+    static void offerExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.offer("Apple");
+        list.offer("Banana");
+        System.out.println("offer(): " + list); 
+        // Output: [Apple, Banana]
+        
+    }
+
+    static void pollExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.offer("Apple");
+        list.offer("Banana");
+        System.out.println("poll(): " + list.poll()); 
+        // Output: Apple
+        System.out.println("List after poll: " + list); 
+        // Output: [Banana]
+        
+    }
+
+    static void peekExample() {
+        
+        LinkedList<String> list = new LinkedList<>();
+        list.offer("Apple");
+        list.offer("Banana");
+        System.out.println("peek(): " + list.peek()); 
+        // Output: Apple
+        
+    }
+
+    // ----------------- MAIN -----------------
+
+    public static void main(String[] args) {
+        addExample();
+        addAtIndexExample();
+        addAllExample();
+        addAllAtIndexExample();
+
+        removeObjectExample();
+        removeIndexExample();
+        clearExample();
+
+        containsExample();
+        indexOfExample();
+        lastIndexOfExample();
+
+        getExample();
+        iteratorExample();
+
+        sizeExample();
+        isEmptyExample();
+
+        addFirstExample();
+        addLastExample();
+        getFirstExample();
+        getLastExample();
+        removeFirstExample();
+        removeLastExample();
+        offerExample();
+        pollExample();
+        peekExample();
+    }
+}
+
+
+===============================================================================================
+
+Vector :
+--------
+
+* `Vector` is a legacy class from Java 1.0 (before the Collections Framework).
+* It is in the `java.util` package.
+* It grows dynamically like `ArrayList`.
+* It allows duplicates and maintains insertion order.
+* All methods are **synchronized** (thread-safe) but slower compared to `ArrayList`.
+* Recommended only when synchronization is required, otherwise use `ArrayList`.
+
+---
+
+### **Constructors:**
+
+1. `Vector()` – Creates an empty vector with capacity 10.
+2. `Vector(int capacity)` – Creates a vector with given capacity.
+3. `Vector(Collection c)` – Creates a vector containing the elements of a given collection.
+
+---
+
+### **Vector-Specific Methods (extra methods not in ArrayList):**
+---------------------------------------------------------------
+
+
+* `addElement(E e)` – Adds element (legacy method, same as add).
+* `elementAt(int index)` – Returns element at index.
+* `firstElement()` – Returns the first element.
+* `lastElement()` – Returns the last element.
+* `removeElement(Object o)` – Removes first occurrence of element.
+* `removeAllElements()` – Removes all elements (like clear).
+* `capacity()` – Returns current capacity of vector.
+
+
+
+
+
+import java.util.*;
+
+public class EasyVectorDemo {
+
+    // ----------------- ADD METHODS -----------------
+
+    static void addExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        System.out.println("add(Object): " + v); 
+        // Output: [Apple, Banana]
+        
+    }
+
+    static void addAtIndexExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Orange");
+        v.add(1, "Banana");
+        System.out.println("add(index,Object): " + v); 
+        // Output: [Apple, Banana, Orange]
+        
+    }
+
+    static void addAllExample() {
+        
+        Vector<String> v1 = new Vector<>();
+        v1.add("Apple");
+        Vector<String> v2 = new Vector<>();
+        v2.add("Banana");
+        v2.add("Orange");
+        v1.addAll(v2);
+        System.out.println("addAll(Collection): " + v1); 
+        // Output: [Apple, Banana, Orange]
+        
+    }
+
+    static void addAllAtIndexExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Orange");
+        Vector<String> newFruits = new Vector<>();
+        newFruits.add("Banana");
+        newFruits.add("Grapes");
+        v.addAll(1, newFruits);
+        System.out.println("addAll(index,Collection): " + v); 
+        // Output: [Apple, Banana, Grapes, Orange]
+        
+    }
+
+    static void addElementExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.addElement("Apple");
+        v.addElement("Banana");
+        System.out.println("addElement(): " + v); 
+        // Output: [Apple, Banana]
+        
+    }
+
+    // ----------------- REMOVE METHODS -----------------
+
+    static void removeObjectExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        v.remove("Banana");
+        System.out.println("remove(Object): " + v); 
+        // Output: [Apple]
+        
+    }
+
+    static void removeIndexExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        v.add("Orange");
+        v.remove(1);
+        System.out.println("remove(index): " + v); 
+        // Output: [Apple, Orange]
+        
+    }
+
+    static void removeElementExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        v.removeElement("Apple");
+        System.out.println("removeElement(): " + v); 
+        // Output: [Banana]
+        
+    }
+
+    static void removeAllElementsExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        v.removeAllElements();
+        System.out.println("removeAllElements(): " + v); 
+        // Output: []
+        
+    }
+
+    // ----------------- SEARCH METHODS -----------------
+
+    static void containsExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        System.out.println("contains(Banana): " + v.contains("Banana")); 
+        // Output: true
+        
+    }
+
+    static void indexOfExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        v.add("Orange");
+        v.add("Banana");
+        System.out.println("indexOf(Banana): " + v.indexOf("Banana")); 
+        // Output: 1
+        
+    }
+
+    static void lastIndexOfExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        v.add("Orange");
+        v.add("Banana");
+        System.out.println("lastIndexOf(Banana): " + v.lastIndexOf("Banana")); 
+        // Output: 3
+        
+    }
+
+    // ----------------- ACCESS METHODS -----------------
+
+    static void getExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        v.add("Orange");
+        System.out.println("get(1): " + v.get(1)); 
+        // Output: Banana
+        
+    }
+
+    static void elementAtExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        System.out.println("elementAt(0): " + v.elementAt(0)); 
+        // Output: Apple
+        
+    }
+
+    static void firstLastExample() {
+        
+        Vector<String> v = new Vector<>();
+        v.add("Apple");
+        v.add("Banana");
+        System.out.println("firstElement(): " + v.firstElement()); 
+        // Output: Apple
+        System.out.println("lastElement(): " + v.lastElement()); 
+        // Output: Banana
+        
+    }
+
+    // ----------------- MISCELLANEOUS -----------------
+
+    static void sizeCapacityExample() {
+        
+        Vector<String> v = new Vector<>(2);
+        v.add("Apple");
+        v.add("Banana");
+        System.out.println("size(): " + v.size()); 
+        // Output: 2
+        System.out.println("capacity(): " + v.capacity()); 
+        // Output: 2
+        v.add("Orange");
+        System.out.println("capacity after adding extra element: " + v.capacity()); 
+        // Output: 4 (doubles automatically)
+        
+    }
+
+    // ----------------- MAIN -----------------
+
+    public static void main(String[] args) {
+        addExample();
+        addAtIndexExample();
+        addAllExample();
+        addAllAtIndexExample();
+        addElementExample();
+
+        removeObjectExample();
+        removeIndexExample();
+        removeElementExample();
+        removeAllElementsExample();
+
+        containsExample();
+        indexOfExample();
+        lastIndexOfExample();
+
+        getExample();
+        elementAtExample();
+        firstLastExample();
+
+        sizeCapacityExample();
+    }
+}
+
+
+===============================================================================================
+
+
+Stack
+--------
+
+
+
+
+* `Stack` is a legacy class in `java.util`.
+* It extends **Vector**, which extends **AbstractList**, which implements **List**.
+* That means `Stack` supports:
+
+  * **All List methods**
+  * **All Vector methods**
+  * **Stack-specific methods**
+* It is **synchronized** (thread-safe).
+
+
+
+## **1. Constructors**
+
+* `Stack()` – Creates an empty stack.
+
+
+
+## **2. Stack-Specific Methods**
+-----------------------------------
+
+
+* `push(E item)` → Pushes item to top.
+* `pop()` → Removes and returns top.
+* `peek()` → Returns top without removing.
+* `search(Object o)` → Returns 1-based position from top (or -1).
+* `empty()` → Checks if empty.
+
+
+
+## **3. Vector-Specific Methods**
+-----------------------------
+
+
+* `addElement(E e)`
+* `elementAt(int index)`
+* `firstElement()`
+* `lastElement()`
+* `removeElement(Object o)`
+* `removeAllElements()`
+* `capacity()`
+
+
+
+## **4. List (Common) Methods**
+-----------------------------------
+(These are inherited from `List` and `AbstractList`)
+
+
+
+### Add methods
+
+* `add(E e)`
+* `add(int index, E e)`
+* `addAll(Collection c)`
+* `addAll(int index, Collection c)`
+
+### Remove methods
+
+* `remove(Object o)`
+* `remove(int index)`
+* `removeAll(Collection c)`
+* `clear()`
+
+### Search methods
+
+* `contains(Object o)`
+* `containsAll(Collection c)`
+* `indexOf(Object o)`
+* `lastIndexOf(Object o)`
+
+### Access methods
+
+* `get(int index)`
+* `iterator()`
+* `listIterator()`
+* `forEach()`
+
+### Miscellaneous
+
+* `size()`
+* `isEmpty()`
+* `hashCode()`
+* `equals(Object o)`
+* `toArray()`
+
+----------------------------------------------
+
+
+
+
+
+import java.util.*;
+
+public class FullStackDemo {
+
+    // ----------------- STACK METHODS -----------------
+    static void stackMethods() {
+        
+        Stack<String> s = new Stack<>();
+        s.push("Apple");
+        s.push("Banana");
+        System.out.println("peek(): " + s.peek()); // Banana
+        System.out.println("pop(): " + s.pop());   // Banana
+        System.out.println("search(Apple): " + s.search("Apple")); // 1
+        System.out.println("empty(): " + s.empty()); // false
+        
+    }
+    
+    
+
+    // ----------------- VECTOR METHODS -----------------
+    static void vectorMethods() {
+        
+        Stack<String> s = new Stack<>();
+        s.addElement("Apple");
+        s.addElement("Banana");
+        System.out.println("elementAt(0): " + s.elementAt(0)); // Apple
+        System.out.println("firstElement(): " + s.firstElement()); // Apple
+        System.out.println("lastElement(): " + s.lastElement()); // Banana
+        System.out.println("capacity(): " + s.capacity()); // 10
+        
+    }
+    
+    
+    
+
+    // ----------------- LIST METHODS -----------------
+    static void listMethods() {
+        
+        Stack<String> s = new Stack<>();
+        s.add("Apple");
+        s.add(1, "Banana");
+        List<String> extra = new ArrayList<>();
+        extra.add("Orange");
+        s.addAll(extra);
+        System.out.println("add/addAll(): " + s); // [Apple, Banana, Orange]
+
+        System.out.println("get(1): " + s.get(1)); // Banana
+        System.out.println("contains(Orange): " + s.contains("Orange")); // true
+        System.out.println("indexOf(Banana): " + s.indexOf("Banana")); // 1
+
+        s.remove("Apple");
+        System.out.println("remove(Object): " + s); // [Banana, Orange]
+        s.clear();
+        System.out.println("clear(): " + s); // []
+        
+    }
+
+
+
+    // ----------------- MAIN -----------------
+    public static void main(String[] args) {
+        stackMethods();
+        vectorMethods();
+        listMethods();
+    }
+}

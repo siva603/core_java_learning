@@ -1,0 +1,92 @@
+Wrapper Classes
+---------------
+In Java wrapper class it provides a mechanism to convert into primitive type of data into non primitive type of data
+ and non primitive type of data into primitive type of data 
+In Java for every primitive data type corresponding wrapper classes are present 
+
+| Primitive Type | Wrapper Class |
+|----------------|---------------|
+| `byte`         | `Byte` |
+| `short`        | `Short` |
+| `int`          | `Integer` |
+| `long`         | `Long` |
+| `float`        | `Float` |
+| `double`       | `Double` |
+| `char`         | `Character` |
+| `boolean`      | `Boolean` |
+
+All rubber classes are present inside the Java.lang package 
+Inside all wrapper classes toString() method overridden 
+In Java wrapper classes are mainly used for two functionalities 
+1. to achieve complete object orientation
+2. to use collection frame 
+
+-----
+
+**Boxing**
+
+Boxing is the process of converting a primitive data type to a non-primitive wrapper object.
+
+  * **Autoboxing (Implicit):** Done automatically by the compiler.
+  
+    ```java
+    int i = 20;
+    Integer i2 = i;
+    ```
+    
+    
+  * **Explicit Boxing:** Done manually using the `valueOf()` method.
+  
+  
+    ```java
+    int x = 10;
+    Integer y = Integer.valueOf(x);
+    ```
+
+-----
+
+**Unboxing**
+
+Unboxing is the process of converting a non-primitive wrapper object to its corresponding primitive data type.
+
+  * **Autounboxing (Implicit):** Done automatically by the compiler.
+  
+    ```java
+    Integer i = 100;
+    int i2 = i;
+    ```
+    
+  * **Explicit Unboxing:** Done manually using a method like `intValue()`.
+    ```java
+    Integer i = 100;
+    int i2 = i.intValue();
+    ```
+    
+=========================================================================================
+Parsing :
+--------
+
+The process of converting string type of data into primitive type of data is known as parsing 
+In Java passing can run only explicitly by using the following method 
+
+
+Byte -> Public static byte parseByte(String)
+
+Short -> public static short parseShort(String)
+
+Integer -> public static int parseInt(String)
+
+Long -> public static long parseLong(String)
+
+Double -> public static double parseDouble(string)
+
+Boolean -> public static boolean parseBoolean(String)
+
+example :
+---------
+
+	String s = "1234";
+	int a = Integer.parseInt(s);
+	System.out.println(a); // if we pass string like this "12jd" we'll get NumberFormatException
+
+
